@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Demo - Vercel Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 600px;
+            margin: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+            to { text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); }
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1.5rem;
+            border-radius: 15px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .interactive-demo {
+            margin: 2rem 0;
+        }
+
+        button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            border: none;
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .svg-demo {
+            margin: 2rem 0;
+        }
+
+        .orbit-demo {
+            width: 200px;
+            height: 200px;
+            margin: 1rem auto;
+        }
+
+        .planet {
+            animation: orbit 4s linear infinite;
+            transform-origin: 100px 100px;
+        }
+
+        @keyframes orbit {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .deployment-info {
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            margin: 0.2rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Vercel Test Deployment</h1>
+        
+        <p>This page demonstrates key technologies for educational content and web games.</p>
+        
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>📚 Educational Content</h3>
+                <p>Interactive elements, animations, and responsive design for engaging learning experiences.</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>🎮 Game Ready</h3>
+                <p>CSS animations and JavaScript interactions that translate well to Phaser.js game development.</p>
+            </div>
+        </div>
+
+        <div class="interactive-demo">
+            <h3>Interactive Demo</h3>
+            <button onclick="changeColour()">Change Background</button>
+            <button onclick="addElement()">Add Star</button>
+            <button onclick="showTime()">Show Time</button>
+            <div id="output"></div>
+        </div>
+
+        <div class="svg-demo">
+            <h3>SVG Animation Demo</h3>
+            <svg class="orbit-demo" viewBox="0 0 200 200">
+                <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                <circle cx="100" cy="100" r="8" fill="#ffd700"/>
+                <g class="planet">
+                    <circle cx="180" cy="100" r="6" fill="#4a90e2"/>
+                </g>
+            </svg>
+        </div>
+
+        <div class="deployment-info">
+            <h4>🛠️ Technologies Tested</h4>
+            <div>
+                <span class="tech-badge">HTML5</span>
+                <span class="tech-badge">CSS3</span>
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">SVG</span>
+                <span class="tech-badge">Responsive Design</span>
+                <span class="tech-badge">Animations</span>
+            </div>
+            <p style="margin-top: 1rem;">
+                <strong>Deployment Time:</strong> <span id="deployTime"></span><br>
+                <strong>Status:</strong> ✅ Successfully deployed to Vercel
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Set deployment time
+        document.getElementById('deployTime').textContent = new Date().toLocaleString('en-GB');
+
+        const colours = [
+            'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+            'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+            'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+            'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
+        ];
+
+        function changeColour() {
+            const randomColour = colours[Math.floor(Math.random() * colours.length)];
+            document.body.style.background = randomColour;
+        }
+
+        function addElement() {
+            const star = document.createElement('div');
+            star.innerHTML = '⭐';
+            star.style.position = 'fixed';
+            star.style.left = Math.random() * window.innerWidth + 'px';
+            star.style.top = Math.random() * window.innerHeight + 'px';
+            star.style.fontSize = '2rem';
+            star.style.animation = 'glow 1s ease-in-out infinite alternate';
+            star.style.pointerEvents = 'none';
+            star.style.zIndex = '-1';
+            document.body.appendChild(star);
+            
+            // Remove after 3 seconds
+            setTimeout(() => star.remove(), 3000);
+        }
+
+        function showTime() {
+            const output = document.getElementById('output');
+            const now = new Date();
+            output.innerHTML = `
+                <div style="margin-top: 1rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 10px;">
+                    <strong>Current Time:</strong> ${now.toLocaleString('en-GB')}<br>
+                    <strong>UTC:</strong> ${now.toUTCString()}<br>
+                    <strong>Timestamp:</strong> ${now.getTime()}
+                </div>
+            `;
+        }
+
+        // Add some interactive behaviour on load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Vercel test page loaded successfully!');
+            console.log('Perfect for educational content and Phaser.js game development');
+        });
+    </script>
+</body>
+</html>
